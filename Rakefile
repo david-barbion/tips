@@ -41,14 +41,19 @@ task :genhtml, [:theme, :backend] do |t, args|
     # A queue is thread safe
     queue = txtfilelist.inject(Queue.new, :push)
 
+    #Until queue.empty?
+    #    file = queue.shift.chomp
+    #    %x[asciidoc  --backend=#{args.backend} --theme=#{args.theme} #{file}]
+    #End
+
     threads = Array.new(NUM_THREADS) do
         Thread.new do
             until queue.empty?
                 file = queue.shift.chomp
                 %x[asciidoc  --backend=#{args.backend} --theme=#{args.theme} #{file}]
-			end
-		end
-	end
+            end
+        end
+    end
 
     begin
         threads.each(&:join)
