@@ -3,9 +3,11 @@ scsi devices - rescan
 
 [source, sh]
 --------------------------------------------------------------------------------
+# When you add disks :
 find /sys/class/scsi_host/ -regex '.*host[0-9]+$' \
   | while read folder; do echo '- - -' > $folder/scan; done
 
+# When you extend a disk :
 find /sys/block/ -name 'sd*' | while read folder; do \
     echo 1 > $folder/device/rescan; done
 --------------------------------------------------------------------------------
