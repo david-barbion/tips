@@ -550,9 +550,11 @@ asciidoc.install();
 <div id="preamble">
 <div class="sectionbody">
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span></span>find /sys/class/scsi_host/ -regex <span class="s1">&#39;.*host[0-9]+$&#39;</span> <span class="se">\</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="c1"># When you add disks :</span>
+find /sys/class/scsi_host/ -regex <span class="s1">&#39;.*host[0-9]+$&#39;</span> <span class="se">\</span>
   <span class="p">|</span> <span class="k">while</span> <span class="nb">read</span> folder<span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="s1">&#39;- - -&#39;</span> &gt; <span class="nv">$folder</span>/scan<span class="p">;</span> <span class="k">done</span>
 
+<span class="c1"># When you extend a disk :</span>
 find /sys/block/ -name <span class="s1">&#39;sd*&#39;</span> <span class="p">|</span> <span class="k">while</span> <span class="nb">read</span> folder<span class="p">;</span> <span class="k">do</span> <span class="se">\</span>
     <span class="nb">echo</span> <span class="m">1</span> &gt; <span class="nv">$folder</span>/device/rescan<span class="p">;</span> <span class="k">done</span>
 </pre></div></div></div>
