@@ -1,0 +1,16 @@
+lxc - storage
+=============
+
+Create a storage pool using LVM
+
+-----------------------------------------------------------------------------
+pvcreate /dev/...
+vgcreate lxcvg /dev/...
+lxc storage create lvmlxc lvm lvm.thinpool_name=lvdata source=lxcvg
+-----------------------------------------------------------------------------
+
+Set it as default
+
+-----------------------------------------------------------------------------
+lxc profile device add default root disk path=/ pool=lvmlxc
+-----------------------------------------------------------------------------
