@@ -1,0 +1,20 @@
+Debug udev rules
+===================
+
+udev rules can be stored in:
+
+* /etc/udev/rules.d
+* /lib/udev/rules.d
+
+[source, sh]
+--------------------------------------------------------------------------------
+# reload rules
+udevadm trigger
+udevadm control --reload
+
+# monitor udev events
+udevadm monitor
+
+# show udev attributes for a driver
+udevadm info -qall -p /sys/class/sound/card0
+--------------------------------------------------------------------------------
