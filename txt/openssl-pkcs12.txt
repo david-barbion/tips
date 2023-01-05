@@ -1,0 +1,25 @@
+openssl - handle pkcs12
+===========================
+
+Create a #pkcs12 from private key and certificates in pem format:
+
+------------------------------------------------------------------------------
+openssl pkcs12 -export -inkey myprivatekey.key  -in mycertificate.cer -chain -CAfile cacert.cer -name friendly_name -out mybundle.pfx
+------------------------------------------------------------------------------
+
+Then to extract that #pkcs12 private key and certificates:
+
+------------------------------------------------------------------------------
+# private key
+openssl pkcs12 -in mybundle.pfx -nocerts -out myprivatekey.key
+# (optional) if using EC key
+openssl ec -in myprivatekey.key -out myprivatekey-ec.key
+
+# certificate
+openssl pkcs12 -in mybundle.pfx -clcerts -nokeys | openssl x509 -out mycertificate.cer
+# chain
+
+
+-----------------------------------------------------------------------------
+
+Additional tags : ssl, certificate, cert, pkcs12
