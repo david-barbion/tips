@@ -1,6 +1,15 @@
 terminator - customize
 ======================
 
+== Raccourcis
+
+Restaurer le comportement attendu de terminator avec Ctrl+Shift+e :
+
+Lancer `ibus-setup`, onglet Émoticône, supprimer ou modifier le raccourci 'Emoji
+annotation'
+
+== Configuration personnelle
+
 -------------------------------------------------------------------------------
 mkdir ~/.config/terminator
 

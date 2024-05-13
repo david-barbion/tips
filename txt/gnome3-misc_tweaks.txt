@@ -52,7 +52,8 @@ gsettings set org.gnome.desktop.wm.preferences visual-bell true
 
 gsettings set org.gnome.desktop.wm.preferences visual-bell-type frame-flash
 
-
+# Highlight the mouse cursor when you press Ctrl
+gsettings reset org.gnome.desktop.interface locate-pointer
 
 # Change the max screencast duration
 gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 600

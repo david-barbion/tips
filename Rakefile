@@ -5,8 +5,8 @@ require 'thread'
 
 NUM_THREADS = 16
 
-subheader_link = "http://lofic.github.com/tips/[lofic.github.com/tips]"
-project_link = "https://github.com/lofic/tips/[> give me a star here <]"
+subheader_link = "http://david-barbion.github.io/tips/[david-barbion.github.io/tips]"
+project_link = "https://github.com/david-barbion/tips/[> give me a star here <]"
 
 html_folder = "./html" # Where you generate your html files
 txt_folder = "./txt" # Where you write your notes
