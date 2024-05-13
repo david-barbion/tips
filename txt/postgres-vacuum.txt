@@ -1,0 +1,17 @@
+Postgres server - tune autovacuum
+=======================================
+
+Get current database live/dead tuples ratio (see pct):
+[source]
+-----------------------------------------------------------------------------
+SELECT relname, n_live_tup, n_dead_tup, 
+  case when n_live_tup > 0 then (n_dead_tup/n_live_tup::float)*100 end pct,
+  last_vacuum, last_autovacuum,last_autoanalyze
+FROM pg_stat_user_tables order by pct desc;
+-----------------------------------------------------------------------------
+
+Show autovacuum processes
+[source]
+-----------------------------------------------------------------------------
+select * from pg_stat_progress_vacuum;
+-----------------------------------------------------------------------------
