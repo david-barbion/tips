@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <title>Postgres server - tune autovacuum</title>
+</articleinfo>
+<simpara>Get current database live/dead tuples ratio (see pct):</simpara>
+<programlisting>
+SELECT relname, n_live_tup, n_dead_tup,
+  case when n_live_tup &gt; 0 then (n_dead_tup/n_live_tup::float)*100 end pct,
+  last_vacuum, last_autovacuum,last_autoanalyze
+FROM pg_stat_user_tables order by pct desc;</programlisting>
+<simpara>Show autovacuum processes</simpara>
+<programlisting>
+select * from pg_stat_progress_vacuum;</programlisting>
+</article>

@@ -1,5 +1,5 @@
 Postgres server - tune autovacuum
-=======================================
+=================================
 
 Get current database live/dead tuples ratio (see pct):
 [source]
