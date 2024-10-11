@@ -1,0 +1,28 @@
+filter-branch
+=============
+
+Le but: rapatrier un dépôt et son historique (complet ou partiel) dans un autre dépôt, sous un autre dossier.
+
+1) Ancien dépôts, on déplace les fichiers à déplacer
+
+Les commits seront réécrits avec les nouveaux chemins
+
+----------------------------------------------------------------------------------------
+cd my-old-repo
+git checkout -b feat/move
+git filter-branch --tree-filter "mkdir -p new/directory; git mv -k * new/directory" HEAD
+----------------------------------------------------------------------------------------
+
+2) ajouter le remote du dépôt cible
+et pousser la branche feat/move et merger sur le dépôt cible.
+
+----------------------------------------------------------------------------------------
+git checkout -b feat/datadog-sbx
+FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch -f \
+   --subdirectory-filter datadog/overlay/sandbox \
+   --tree-filter "mkdir -p datadog/overlay/sbx; git mv -k * datadog/overlay/sbx/" HEAD
+git remote add tooling ssh://git@gitlab.com/kiabi-com/bekom/cac/kustomize-tools
+git fetch tooling
+git rebase tooling/main
+git push -u tooling feat/datadog-sbx
+----------------------------------------------------------------------------------------
