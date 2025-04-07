@@ -1,0 +1,21 @@
+Postgres server - bloat management
+==================================
+
+Get current database bloat:
+[source]
+-----------------------------------------------------------------------------
+CREATE EXTENSION pgstattuple;
+SELECT a.oid::regclass AS table_name, 
+       b.* 
+FROM  (SELECT  oid 
+       FROM    pg_class 
+       WHERE   oid > 16384 
+               AND relkind = r) AS a, 
+      LATERAL (SELECT * 
+                FROM pgstattuple(a.oid) AS c
+                ) AS b 
+ORDER BY 2 DESC;
+-----------------------------------------------------------------------------
+tuple_percent should be near 100% (which is no bloat)
+
+
