@@ -1,0 +1,8 @@
+Kubernetes - debug container
+============================
+
+# Do some network troubleshooting:
+--------------------------------------------------------------------------------
+# in shell
+kubectl debug -it pod-to-attach-to --image=nicolaka/netshoot --namespace pods-namespace
+--------------------------------------------------------------------------------
